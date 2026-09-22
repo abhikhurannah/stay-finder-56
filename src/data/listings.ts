@@ -129,20 +129,20 @@ export const CATEGORIES = [
 ];
 
 export const listings: Listing[] = Array.from({ length: 16 }, (_, i) => {
-  const b = base[i % base.length];
-  const city = i < 4 ? [b.location, b.country] : cities[(i - 4) % cities.length];
+  const b = base[i % base.length]!;
+  const city = i < 4 ? [b.location, b.country] : cities[(i - 4) % cities.length]!;
   const bump = Math.floor(i / base.length);
   return {
     ...b,
     id: `stay-${i + 1}`,
-    location: city[0],
-    country: city[1],
+    location: city[0]!,
+    country: city[1]!,
     title: i < 4 ? b.title : `${b.title} in ${city[0]}`,
     price: b.price + bump * 37,
     rating: Math.round((b.rating - bump * 0.04) * 100) / 100,
     reviews: b.reviews - bump * 31,
     distance: `${120 + i * 37} km away`,
-    dates: ["Nov 4 – 9", "Dec 1 – 6", "Jan 12 – 18", "Feb 3 – 8"][i % 4],
+    dates: ["Nov 4 – 9", "Dec 1 – 6", "Jan 12 – 18", "Feb 3 – 8"][i % 4]!,
   };
 });
 
